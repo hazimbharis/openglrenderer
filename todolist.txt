@@ -1,0 +1,6 @@
+this is a post-it note for how to rebuild the opengl tutorial that im still following
+
+- um, I think open run cmake
+- there should are already be a cmake thing/txt file in the folder
+- umm, open mingw64 I think or ucrt64, I think that one works too
+- run this whenever you make a change to the source files so that it updates the executables
