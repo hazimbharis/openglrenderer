@@ -1,5 +1,7 @@
 #pragma once
+#include <memory>
 
+class OGraphicsEngine;
 class OWindow;
 class OGame
 {
@@ -11,5 +13,6 @@ public:
     void quit();
 protected:
     bool m_isRunning = true;
-    OWindow* m_display = nullptr;
+    std::unique_ptr<OWindow> m_display;
+    std::unique_ptr<OGraphicsEngine> m_graphicsEngine;
 };

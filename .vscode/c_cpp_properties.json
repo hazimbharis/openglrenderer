@@ -4,7 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "ZimEngine/include",
-                "ZimEngine/source"
+                "ZimEngine/source",
+                "ZimEngine/vendor",
+                "${workspaceFolder}/ZimEngine/vendor/glad/include"
             ],
             "defines": [
                 "_DEBUG",

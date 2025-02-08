@@ -1,26 +1,37 @@
 #include <ZimEngine/Game/OGame.h>
-#include <ZimEngine/Window/OWindow.h>
+#include <ZimEngine/Window/OWindow.h>   
+#include <ZimEngine/Graphics/OGraphicsEngine.h>
 #include <windows.h>
+#include <ZimEngine/make_unique.h>
 
 OGame::OGame()
 {
-    m_display = new OWindow();
+    m_graphicsEngine = std::make_unique<OGraphicsEngine>();
+    m_display = std::make_unique<OWindow>(); // im supposed to make this a unique type pointer but whatever, ill deal with that later
 }
 
 OGame::~OGame()
 {
-    delete m_display;
 }
 
 void OGame::run()
 {
     MSG msg;
-    while(m_isRunning && !m_display->IsClosed())
+    while(m_isRunning)
     {
-        if(PeekMessage(&msg, NULL,NULL,NULL,PM_REMOVE))
+        msg = {};
+        if(PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT)
+            {
+                m_isRunning = false;
+                continue;
+            }
+            else 
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
         }
 
         Sleep(1);

@@ -8,9 +8,12 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-I${workspaceFolder}\\ZimEngine\\include",
+                "${workspaceFolder}\\ZimEngine\\vendor\\glad\\include",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Window\\OWindow.cpp",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Game\\OGame.cpp",
+                "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Graphics\\OGraphicsEngine.cpp", //this is not scalable - fix this
                 "${file}",
+                "-lopengl32", // this was supposed to be added to the linker in visual studio but im stubborn
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

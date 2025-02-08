@@ -10,7 +10,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
     {
         OWindow* window = (OWindow*) GetWindowLongPtr(hwnd,GWLP_USERDATA);
-        window->OnDestroy();
+        break;
+    }
+    case WM_CLOSE:
+    {
+        PostQuitMessage(0);
         break;
     }
     default:
@@ -25,16 +29,18 @@ OWindow::OWindow()
     WNDCLASSEX wc = {};
     wc.cbSize = sizeof(WNDCLASSEX);
     wc.lpszClassName = _T("ZimEngineWindow");
-    wc.lpfnWndProc = DefWindowProc;
+    wc.lpfnWndProc = &WndProc;
+    wc.style = CS_OWNDC;
 
-    RegisterClassEx(&wc);
+    auto classId = RegisterClassEx(&wc);
+    assert(classId);
 
     RECT rc = {0, 0, 1024, 768};
     AdjustWindowRect(&rc, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, false);
 
     m_handle = CreateWindowEx(
         NULL, 
-        _T("ZimEngineWindow"), 
+        MAKEINTATOM(classId), 
         _T("ZimEngine"), 
         WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, 
         CW_USEDEFAULT, 
@@ -58,14 +64,4 @@ OWindow::OWindow()
 OWindow::~OWindow()
 {
     DestroyWindow((HWND) m_handle);
-}
-
-void OWindow::OnDestroy()
-{
-    m_handle = nullptr;
-}
-
-bool OWindow::IsClosed()
-{
-    return !m_handle;
 }
