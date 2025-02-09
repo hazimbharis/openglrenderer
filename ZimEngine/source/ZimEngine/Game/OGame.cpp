@@ -8,14 +8,33 @@ OGame::OGame()
 {
     m_graphicsEngine = std::make_unique<OGraphicsEngine>();
     m_display = std::make_unique<OWindow>(); // im supposed to make this a unique type pointer but whatever, ill deal with that later
+
+    m_display->makeCurrentContext();
 }
 
 OGame::~OGame()
 {
 }
 
+void OGame::onCreate()
+{
+}
+
+void OGame::onUpdate()
+{
+    m_graphicsEngine->clear(OVec4(1,0,0,1));
+
+    m_display->present(false);
+}
+
+void OGame::onQuit()
+{
+}
+
 void OGame::run()
 {
+    onCreate();
+
     MSG msg;
     while(m_isRunning)
     {
@@ -34,8 +53,10 @@ void OGame::run()
             }
         }
 
-        Sleep(1);
+        onUpdate();
     }
+
+    onQuit();
 }
 
 void OGame::quit()
