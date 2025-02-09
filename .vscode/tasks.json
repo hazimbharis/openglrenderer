@@ -8,12 +8,15 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-I${workspaceFolder}\\ZimEngine\\include",
-                "${workspaceFolder}\\ZimEngine\\vendor\\glad\\include",
+                "-I${workspaceFolder}\\ZimEngine\\vendor\\glad\\include",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Window\\OWindow.cpp",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Game\\OGame.cpp",
-                "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Graphics\\OGraphicsEngine.cpp", //this is not scalable - fix this
+                "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Graphics\\OGraphicsEngine.cpp", //this is not scalable - fix this -> to fix this, need to use cmake
+                "${workspaceFolder}\\ZimEngine\\vendor\\glad\\src\\glad.c",
+                "${workspaceFolder}\\ZimEngine\\vendor\\glad\\src\\glad_wgl.c",
                 "${file}",
                 "-lopengl32", // this was supposed to be added to the linker in visual studio but im stubborn
+                "-lgdi32",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

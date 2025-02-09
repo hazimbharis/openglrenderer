@@ -5,8 +5,8 @@
             "includePath": [
                 "ZimEngine/include",
                 "ZimEngine/source",
-                "ZimEngine/vendor",
-                "${workspaceFolder}/ZimEngine/vendor/glad/include"
+                "ZimEngine/vendor/glad/include",
+                "ZimEngine/vendor/glad/src"
             ],
             "defines": [
                 "_DEBUG",
