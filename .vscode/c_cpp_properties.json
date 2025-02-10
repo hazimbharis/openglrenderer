@@ -6,7 +6,8 @@
                 "ZimEngine/include",
                 "ZimEngine/source",
                 "ZimEngine/vendor/glad/include",
-                "ZimEngine/vendor/glad/src"
+                "ZimEngine/vendor/glad/src",
+                "ZimEngine/vendor/imgui"
             ],
             "defines": [
                 "_DEBUG",

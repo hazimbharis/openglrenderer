@@ -9,6 +9,7 @@
                 "-g",
                 "-I${workspaceFolder}\\ZimEngine\\include",
                 "-I${workspaceFolder}\\ZimEngine\\vendor\\glad\\include",
+                "-I${workspaceFolder}\\ZimEngine\\vendor\\imgui",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Window\\OWindow.cpp",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Game\\OGame.cpp",
                 "${workspaceFolder}\\ZimEngine\\source\\ZimEngine\\Graphics\\OGraphicsEngine.cpp", //this is not scalable - fix this -> to fix this, need to use cmake eventually
