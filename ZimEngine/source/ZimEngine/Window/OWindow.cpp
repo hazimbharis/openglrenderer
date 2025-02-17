@@ -113,3 +113,10 @@ void OWindow::present(bool vsync)
     wglSwapIntervalEXT(vsync); //this is to set the vsync apparently
     wglSwapLayerBuffers(GetDC(HWND(m_handle)), WGL_SWAP_MAIN_PLANE);
 }
+
+ORect OWindow::getInnerSize()
+{
+    RECT rc = {};
+    GetClientRect((HWND)m_handle, &rc);
+    return ORect(rc.right - rc.left, rc.bottom - rc.top);
+}
