@@ -22,4 +22,5 @@ protected:
     std::unique_ptr<OGraphicsEngine> m_graphicsEngine;
 
     OVertexArrayObjectPtr m_triangleVAO;
+    OShaderProgramPtr m_shader;
 };

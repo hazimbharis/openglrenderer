@@ -102,3 +102,13 @@ void OGraphicsEngine::drawTriangles(ui32 vertexCount, ui32 offset)
 {
     glDrawArrays(GL_TRIANGLES, offset, vertexCount);
 }
+
+OShaderProgramPtr OGraphicsEngine::createShaderProgram(const OShaderProgramDesc& desc)
+{
+    return std::make_shared<OShaderProgram>(desc);
+}
+
+void OGraphicsEngine::setShaderProgram(const OShaderProgramPtr& program)
+{
+    glUseProgram(program->getId());
+}

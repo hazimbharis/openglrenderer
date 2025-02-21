@@ -3,6 +3,7 @@
 #include <ZimEngine/Graphics/OGraphicsEngine.h>
 #include <windows.h>
 #include <ZimEngine/make_unique.h>
+#include <iostream>
 
 OGame::OGame()
 {
@@ -26,14 +27,29 @@ void OGame::onCreate()
         0.0f, 0.5f, 0.0f
     };
 
+    const f32 vertexColours[] = {
+        1.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 1.0f,
+    };
+
     m_triangleVAO = m_graphicsEngine->createVertexArrayObject({(void*)triangleVertices, sizeof(f32)*3,3});
+
+
+    m_shader = m_graphicsEngine->createShaderProgram(
+        {
+            L"Assets/Shaders/BasicShader.vert",
+            L"Assets/Shaders/BasicShader.frag"
+        });
 }
 
 void OGame::onUpdate()
 {
-    m_graphicsEngine->clear(OVec4(1,0,0,1));
+    m_graphicsEngine->clear(OVec4(0,0,0,1));
 
     m_graphicsEngine->setVertexArrayObject(m_triangleVAO);
+
+    m_graphicsEngine->setShaderProgram(m_shader);
 
     m_graphicsEngine->drawTriangles(m_triangleVAO->getVertexBufferSize(), 0);
 
